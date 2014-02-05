@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Rev.3 2013-09-20
+ 1. Remove SCCM01 VM and role
+ 2. Remove SCSMDW01 VM and role
+ 3. Add GATEWAY01 VM and use as default gateway for all VMs
+ 4. Using CorpAzure virtual switch to enable testing of multiple environments on 1 hyper-v host.
+	Change back to CorpNet01 for public lab.
+ 5. Prefix VM names with AZ to support additional testing environment, remove for public lab.
+ 6. Back to dynamic memory settings
+ Rev.3.1 2013-09-23 10:42
+ 1. Fixed invalid Gateway address .8 -> .108
+ 2. Set min memory to 2048 for vmm
+ Rev.3.2 2013-09-23 16:00
+ 1. Increase memory to 32gb for all roles
+ Rev3.3 2013-10-01 
+ Rev.3.4 2013-10-03 Added SCO RBD Role to SCO01
+ Rev.3.5 2013-10-04 Removed SC Consoles from DC01, moved to appropriate role servers.
+ Rev.3.6 2013-10-07 Updated password
+ Rev.3.7 2013-10-07 Changed SCOM console from DC01 to SCOM01
+ Rev.3.8 2013-10-25 Added WAP and SPF config
+ Rev.3.9 2014-02-6 Added SMA and App Controller
+ -->
+<Installer version="2.0">
+  <Variable Name="RegisteredUser" Value="Microsoft Corporation" />
+  <Variable Name="RegisteredOrganization" Value="Microsoft Corporation" />
+  <Variable Name="InstallerServiceAccount" Value="CONTOSO\!Installer" />
+  <Variable Name="InstallerServiceAccountPassword" Value="Passw0rd!" />
+  <Variable Name="SourcePath" Value="$SystemDrive\Temp" />
+  <Variable Name="Download" Value="S:\Installer2600" />
+  <Components>
+    <Component Name="Windows Azure Pack">
+	  <Variable name="WindowsAzurePackAdminGroup" Value="CONTOSO\WASAdmins"	/>
+	</Component>
+    <Component Name="System Center 2012 R2 Service Provider Foundation">
+      <Variable Name="SystemCenter2012R2ServiceProviderFoundationSCVMMServiceAccount" Value="CONTOSO\!spf" />
+      <Variable Name="SystemCenter2012R2ServiceProviderFoundationSCVMMServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SystemCenter2012R2ServiceProviderFoundationVMMSecurityGroupUsers" Value="CONTOSO\SPFAdmins" />
+      <Variable Name="SystemCenter2012R2ServiceProviderFoundationSCAdminServiceAccount" Value="CONTOSO\!spf" />
+      <Variable Name="SystemCenter2012R2ServiceProviderFoundationSCAdminServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SystemCenter2012R2ServiceProviderFoundationAdminSecurityGroupUsers" Value="CONTOSO\SPFAdmins" />
+      <Variable Name="SystemCenter2012R2ServiceProviderFoundationSCProviderServiceAccount" Value="CONTOSO\!spf" />
+      <Variable Name="SystemCenter2012R2ServiceProviderFoundationSCProviderServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SystemCenter2012R2ServiceProviderFoundationProviderSecurityGroupUsers" Value="CONTOSO\SPFAdmins" />
+      <Variable Name="SystemCenter2012R2ServiceProviderFoundationUsageSecurityGroupUsers" Value="CONTOSO\Domain Users" />
+    </Component>
+    <Component Name="System Center 2012 R2 Virtual Machine Manager">
+      <Variable Name="SystemCenter2012R2VirtualMachineManagerProgramFiles" Value="D:\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager" />
+      <Variable Name="SystemCenter2012R2VirtualMachineManagerAdminGroup" Value="CONTOSO\VMMAdmins" />
+      <Variable Name="SystemCenter2012R2VirtualMachineManagerBitsTcpPort" Value="444" />
+      <Variable Name="SystemCenter2012R2VirtualMachineManagerServiceAccount" Value="CONTOSO\!vmm" />
+      <Variable Name="SystemCenter2012R2VirtualMachineManagerServiceAccountPassword" Value="Passw0rd!" />
+    </Component>
+    <Component Name="System Center 2012 R2 Orchestrator">
+      <Variable Name="SystemCenter2012R2OrchestratorInstallDir" Value="D:\Program Files (x86)\Microsoft System Center 2012 R2\Orchestrator" />
+      <Variable Name="SystemCenter2012R2OrchestratorAdminGroup" Value="CONTOSO\SCOAdmins" />
+      <Variable Name="SystemCenter2012R2OrchestratorServiceAccount" Value="CONTOSO\!or" />
+      <Variable Name="SystemCenter2012R2OrchestratorServiceAccountPassword" Value="Passw0rd!" />
+    </Component>
+    <Component Name="System Center 2012 R2 App Controller">
+      <Variable Name="SystemCenter2012R2AppControllerInstallPath" Value="D:\Program Files\Microsoft System Center 2012 R2\App Controller" />
+      <Variable Name="SystemCenter2012R2AppControllerAdminGroup" Value="CONTOSO\ACAdmins"/>
+      <Variable Name="SystemCenter2012R2AppControllerServiceAccount" Value="CONTOSO\!ac" />
+      <Variable Name="SystemCenter2012R2AppControllerServiceAccountPassword" Value="Passw0rd!" />
+    </Component>
+    <Component Name="System Center 2012 R2 Service Management Automation">
+      <Variable Name="SystemCenter2012R2ServiceManagementAutomationAdminGroup" Value="CONTOSO\!Installer" />
+      <Variable Name="SystemCenter2012R2ServiceManagementAutomationInstallFolder" Value="D:\Program Files\Microsoft System Center 2012 R2\Service Management Automation" />
+      <Variable Name="SystemCenter2012R2ServiceManagementAutomationServiceAccount" Value="CONTOSO\!sma" />
+      <Variable Name="SystemCenter2012R2ServiceManagementAutomationServiceAccountPassword" Value="Passw0rd!" />
+    </Component>
+  </Components>
+  <Roles>
+    <Role Name="System Center 2012 R2 Virtual Machine Manager Database Server" Server="SCDB01.contoso.com" Instance="MSSQLSERVER"></Role>
+    <Role Name="System Center 2012 R2 Virtual Machine Manager Management Server" Server="SCVMM01.contoso.com"></Role>
+    <Role Name="System Center 2012 R2 Virtual Machine Manager Console" Server="SCVMM01.contoso.com"></Role>	
+    <Role Name="System Center 2012 R2 Orchestrator Database Server" Server="SCDB01.contoso.com" Instance="MSSQLSERVER"></Role>
+    <Role Name="System Center 2012 R2 Orchestrator Management Server" Server="SCO01.contoso.com" ></Role>
+    <Role Name="System Center 2012 R2 Orchestrator Primary Runbook Server" Server="SCO01.contoso.com" ></Role>
+    <Role Name="System Center 2012 R2 Orchestrator Web Components Server" Server="SCO01.contoso.com" ></Role>
+    <Role Name="System Center 2012 R2 Orchestrator Runbook Designer" Server="SCO01.contoso.com" ></Role>
+	<Role Name="System Center 2012 R2 Service Provider Foundation Database Server" Server="SCDB01.contoso.com" Instance="MSSQLSERVER"></Role>
+    <Role Name="System Center 2012 R2 Service Provider Foundation Server" Server="SCO01.contoso.com" ></Role>
+	<Role Name="Windows Azure Pack Tenant Public API Server" Server="WAPTenant01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack Tenant Authentication Site Server" Server="WAPTenant01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack Tenant Site Server" Server="WAPTenant01.contoso.com"></Role>
+	<Role Name="Windows Azure Pack Tenant API Server" Server="WAPTenant01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack Admin API Server" Server="WAPAdmin01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack Admin Site Server" Server="WAPAdmin01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack Admin Authentication Site Server" Server="WAPAdmin01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack Console" Server="WAPAdmin01.contoso.com"></Role>    
+	<Role Name="Windows Azure Pack Database Server" Server="SCDB01.contoso.com"></Role>
+    <Role Name="System Center 2012 R2 Service Management Automation Database Server" Server="SCDB01.contoso.com" Instance="MSSQLSERVER"></Role>
+    <Role Name="System Center 2012 R2 Service Management Automation Web Service Server" Server="SCO01.contoso.com" ></Role>
+    <Role Name="System Center 2012 R2 Service Management Automation Runbook Worker Server" Server="SCO01.contoso.com" ></Role>
+    <Role Name="System Center 2012 R2 App Controller Database Server" Server="SCDB01.contoso.com" Instance="MSSQLSERVER"></Role>
+    <Role Name="System Center 2012 R2 App Controller Server" Server="SCVMM01.contoso.com"></Role>
+    <Role Name="System Center 2012 R2 App Controller Console" Server="SCVMM01.contoso.com"></Role>
+    <Role Name="SQL Server 2012 Management Tools" Server="SCDB01.contoso.com" Instance="MSSQLSERVER"></Role>
+  </Roles>
+  <SQL>
+    <Instance Server="SCDB01.contoso.com" Instance="MSSQLSERVER" Version="SQL Server 2012">
+      <Variable Name="SQLAdmins" Value="CONTOSO\SQL Admins" />
+      <Variable Name="SQLInstallSQLDataDir" Value="D:\Program Files\Microsoft SQL Server"/>
+      <Variable Name="SQLUserDBDir" Value="E:\Program Files\Microsoft SQL Server\MSSQL11.$Instance\MSSQL\Data"/>
+      <Variable Name="SQLUserDBLogDir" Value="E:\Program Files\Microsoft SQL Server\MSSQL11.$Instance\MSSQL\Data"/>
+      <Variable Name="SQLTempDBDir" Value="F:\Program Files\Microsoft SQL Server\MSSQL11.$Instance\MSSQL\Data"/>
+      <Variable Name="SQLTempDBLogDir" Value="F:\Program Files\Microsoft SQL Server\MSSQL11.$Instance\MSSQL\Data"/>
+    </Instance>
+  </SQL>
+  <VMs>
+    <Count>6</Count> 
+    <Domain>
+      <Name>contoso.com</Name>
+      <ServiceAccountOU>Services.HQ</ServiceAccountOU>
+      <GroupOU>Groups.HQ</GroupOU>
+    </Domain>
+    <Default>
+      <Host>Localhost</Host>
+      <VMFolder>S:\VMs</VMFolder>
+      <VHDFolder>S:\VMs</VHDFolder>
+      <VMName>
+        <Prefix>WS12R2D</Prefix>
+        <Sequence>1</Sequence>
+      </VMName>
+      <Processor>2</Processor>
+      <Memory>
+        <Startup>2048</Startup>
+        <Minimum>1024</Minimum> 
+        <Maximum>2048</Maximum>
+        <Buffer>20</Buffer>
+      </Memory>
+      <NetworkAdapter>
+	    <VirtualSwitch>CorpNet01</VirtualSwitch>
+ 	    <MAC>
+          <Prefix>00:15:5D:65:01:</Prefix>
+          <Sequence>4</Sequence>
+        </MAC>
+        <IP>
+          <Prefix>10.0.0.</Prefix>
+          <Sequence>121</Sequence>
+          <Mask>24</Mask>
+          <Gateway>10.0.0.121</Gateway> 
+          <DNS>10.0.0.121</DNS>
+        </IP>
+      </NetworkAdapter>
+      <OSDisk>
+        <Parent>S:\VHD\WS12R2D.vhdx</Parent>
+        <Type>Differencing</Type>
+      </OSDisk>
+      <DataDisks>
+        <Count>1</Count>
+        <Format>VHDX</Format>
+        <Size>25</Size>
+      </DataDisks>
+      <DVD>False</DVD>
+      <AutoStart>
+        <Action>Nothing</Action>
+        <Delay>0</Delay>
+      </AutoStart>
+      <JoinDomain>
+        <Domain>contoso.com</Domain>
+        <Credentials>
+          <Domain>contoso.com</Domain>
+          <Password>Passw0rd!</Password>
+          <Username>!jd</Username>
+        </Credentials>
+        <OrganizationalUnit>Servers.HQ</OrganizationalUnit>
+      </JoinDomain>
+      <AdministratorPassword>Passw0rd!</AdministratorPassword>
+    </Default>
+    <VM Count="1">
+      <VMName>DC01</VMName>
+	  <Memory>
+        <Minimum>2048</Minimum>
+        <Maximum>2048</Maximum>
+        <Buffer>20</Buffer>
+      </Memory>
+      <DataDisks>
+        <Count>2</Count>
+        <Format>VHDX</Format>
+        <Size>50</Size>
+      </DataDisks>
+    </VM>
+	<VM Count="2">
+      <VMName>SCVMM01</VMName>
+    </VM>
+    <VM Count="3">
+      <VMName>SCO01</VMName>
+    </VM>	
+    <VM Count="4">
+      <VMName>WAPAdmin01</VMName>
+    </VM>
+    <VM Count="5">
+      <VMName>WAPTenant01</VMName>
+    </VM>
+    <VM Count="6">
+      <VMName>SCDB01</VMName>
+      <Memory>
+        <Minimum>8192</Minimum>
+        <Maximum>8192</Maximum>
+        <Buffer>20</Buffer>
+      </Memory>
+      <DataDisks>
+        <Count>3</Count>
+        <Format>VHDX</Format>
+        <Size>50</Size>
+      </DataDisks>
+    </VM>
+  </VMs>
+</Installer>
