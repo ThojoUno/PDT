@@ -29,8 +29,8 @@
   <Variable Name="SourcePath" Value="$SystemDrive\Temp" />
   <Variable Name="Download" Value="S:\Installer2600" />
   <Components>
-    <Component Name="Windows Azure Pack">
-	  <Variable name="WindowsAzurePackAdminGroup" Value="CONTOSO\WASAdmins"	/>
+    <Component Name="Windows Azure Pack 2013">
+	  <Variable name="WindowsAzurePack2013AdminGroup" Value="CONTOSO\!Installer"	/>
 	</Component>
     <Component Name="System Center 2012 R2 Service Provider Foundation">
       <Variable Name="SystemCenter2012R2ServiceProviderFoundationSCVMMServiceAccount" Value="CONTOSO\!spf" />
@@ -79,17 +79,17 @@
     <Role Name="System Center 2012 R2 Orchestrator Primary Runbook Server" Server="SCO01.contoso.com" ></Role>
     <Role Name="System Center 2012 R2 Orchestrator Web Components Server" Server="SCO01.contoso.com" ></Role>
     <Role Name="System Center 2012 R2 Orchestrator Runbook Designer" Server="SCO01.contoso.com" ></Role>
-	<Role Name="System Center 2012 R2 Service Provider Foundation Database Server" Server="SCDB01.contoso.com" Instance="MSSQLSERVER"></Role>
+    <Role Name="System Center 2012 R2 Service Provider Foundation Database Server" Server="SCDB01.contoso.com" Instance="MSSQLSERVER"></Role>
     <Role Name="System Center 2012 R2 Service Provider Foundation Server" Server="SCO01.contoso.com" ></Role>
-	<Role Name="Windows Azure Pack Tenant Public API Server" Server="WAPTenant01.contoso.com"></Role>
-    <Role Name="Windows Azure Pack Tenant Authentication Site Server" Server="WAPTenant01.contoso.com"></Role>
-    <Role Name="Windows Azure Pack Tenant Site Server" Server="WAPTenant01.contoso.com"></Role>
-	<Role Name="Windows Azure Pack Tenant API Server" Server="WAPTenant01.contoso.com"></Role>
-    <Role Name="Windows Azure Pack Admin API Server" Server="WAPAdmin01.contoso.com"></Role>
-    <Role Name="Windows Azure Pack Admin Site Server" Server="WAPAdmin01.contoso.com"></Role>
-    <Role Name="Windows Azure Pack Admin Authentication Site Server" Server="WAPAdmin01.contoso.com"></Role>
-    <Role Name="Windows Azure Pack Console" Server="WAPAdmin01.contoso.com"></Role>    
-	<Role Name="Windows Azure Pack Database Server" Server="SCDB01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack 2013 Tenant Public API Server" Server="WAPTenant01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack 2013 Tenant Authentication Site Server" Server="WAPTenant01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack 2013 Tenant Site Server" Server="WAPTenant01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack 2013 Tenant API Server" Server="WAPTenant01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack 2013 Admin API Server" Server="WAPAdmin01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack 2013 Admin Site Server" Server="WAPAdmin01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack 2013 Admin Authentication Site Server" Server="WAPAdmin01.contoso.com"></Role>
+    <Role Name="Windows Azure Pack 2013 Console" Server="WAPAdmin01.contoso.com"></Role>    
+    <Role Name="Windows Azure Pack 2013 Database Server" Server="SCDB01.contoso.com" Instance="MSSQLSERVER"></Role>
     <Role Name="System Center 2012 R2 Service Management Automation Database Server" Server="SCDB01.contoso.com" Instance="MSSQLSERVER"></Role>
     <Role Name="System Center 2012 R2 Service Management Automation Web Service Server" Server="SCO01.contoso.com" ></Role>
     <Role Name="System Center 2012 R2 Service Management Automation Runbook Worker Server" Server="SCO01.contoso.com" ></Role>
