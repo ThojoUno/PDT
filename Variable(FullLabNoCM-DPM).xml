@@ -227,7 +227,7 @@
           <Prefix>192.168.1.</Prefix>
           <Sequence>4</Sequence>
           <Mask>24</Mask>
-          <Gateway>192.168.1.1</Gateway>
+          <Gateway>192.168.1.4</Gateway>
           <DNS>192.168.1.4</DNS>
         </IP>
       </NetworkAdapter>
