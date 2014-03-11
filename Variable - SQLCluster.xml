@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Installer version="2.0">
+  <Variable Name="RegisteredUser" Value="Microsoft Corporation" />
+  <Variable Name="RegisteredOrganization" Value="Microsoft Corporation" />
+  <Variable Name="InstallerServiceAccount" Value="CONTOSO\!Installer" />
+  <Variable Name="InstallerServiceAccountPassword" Value="Passw0rd!" />
+  <Variable Name="SourcePath" Value="$SystemDrive\Temp" />
+  <Variable Name="Download" Value="C:\Installer" />
+  <Components>
+    <Component Name="System Center 2012 R2 Virtual Machine Manager">
+      <Variable Name="SystemCenter2012R2VirtualMachineManagerProgramFiles" Value="D:\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager" />
+      <Variable Name="SystemCenter2012R2VirtualMachineManagerAdminGroup" Value="CONTOSO\VMM Admins" />
+      <Variable Name="SystemCenter2012R2VirtualMachineManagerBitsTcpPort" Value="444" />
+      <Variable Name="SystemCenter2012R2VirtualMachineManagerServiceAccount" Value="CONTOSO\!vmm" />
+      <Variable Name="SystemCenter2012R2VirtualMachineManagerServiceAccountPassword" Value="Passw0rd!" />
+    </Component>
+    <Component Name="System Center 2012 R2 Orchestrator">
+      <Variable Name="SystemCenter2012R2OrchestratorInstallDir" Value="D:\Program Files (x86)\Microsoft System Center 2012 R2\Orchestrator" />
+      <Variable Name="SystemCenter2012R2OrchestratorAdminGroup" Value="CONTOSO\Orchestrator Admins" />
+      <Variable Name="SystemCenter2012R2OrchestratorServiceAccount" Value="CONTOSO\!or" />
+      <Variable Name="SystemCenter2012R2OrchestratorServiceAccountPassword" Value="Passw0rd!" />
+    </Component>
+    <Component Name="System Center 2012 R2 App Controller">
+      <Variable Name="SystemCenter2012R2AppControllerInstallPath" Value="D:\Program Files\Microsoft System Center 2012 R2\App Controller" />
+      <Variable Name="SystemCenter2012R2AppControllerAdminGroup" Value="CONTOSO\AC Admins"/>
+      <Variable Name="SystemCenter2012R2AppControllerServiceAccount" Value="CONTOSO\!ac" />
+      <Variable Name="SystemCenter2012R2AppControllerServiceAccountPassword" Value="Passw0rd!" />
+    </Component>
+    <Component Name="System Center 2012 R2 Operations Manager">
+      <Variable Name="SystemCenter2012R2OperationsManagerInstallPath" Value="D:\Program Files\Microsoft System Center 2012 R2\Operations Manager" />
+      <Variable Name="SystemCenter2012R2OperationsManagerAdminGroup" Value="CONTOSO\OM Admins"/>
+      <Variable Name="SystemCenter2012R2OperationsManagerManagementGroupName" Value="OM_Contoso"/>
+      <Variable Name="SystemCenter2012R2OperationsManagerActionServiceAccount" Value="CONTOSO\!om_saa"/>
+      <Variable Name="SystemCenter2012R2OperationsManagerActionServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SystemCenter2012R2OperationsManagerDASServiceAccount" Value="CONTOSO\!om_das"/>
+      <Variable Name="SystemCenter2012R2OperationsManagerDASServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SystemCenter2012R2OperationsManagerDataReaderServiceAccount" Value="CONTOSO\!om_dra"/>
+      <Variable Name="SystemCenter2012R2OperationsManagerDataReaderServiceAccountPassword" Value="Passw0rd!"/>
+      <Variable Name="SystemCenter2012R2OperationsManagerDataWriterServiceAccount" Value="CONTOSO\!om_dwa"/>
+      <Variable Name="SystemCenter2012R2OperationsManagerDataWriterServiceAccountPassword" Value="Passw0rd!"/>
+    </Component>
+    <Component Name="System Center 2012 R2 Configuration Manager">
+      <Variable Name="SystemCenter2012R2ConfigurationManagerInstallDir" Value="D:\Program Files\Microsoft System Center 2012 R2\Configuration Manager" />
+      <Variable Name="SystemCenter2012R2ConfigurationManagerAdminGroup" Value="CONTOSO\CM Admins"/>
+      <Variable Name="SystemCenter2012R2ConfigurationManagerDatabase" Value="CM_HQ1"/>
+      <Variable Name="SystemCenter2012R2ConfigurationManagerSiteCode" Value="HQ1"/>
+      <Variable Name="SystemCenter2012R2ConfigurationManagerSite" Value="Contoso"/>
+    </Component>
+    <Component Name="System Center 2012 R2 Service Manager">
+      <Variable Name="SystemCenter2012R2ServiceManagerInstallPath" Value="D:\Program Files\Microsoft System Center 2012 R2\Service Manager" />
+      <Variable Name="SystemCenter2012R2ServiceManagerAdminRoleGroup" Value="CONTOSO\SM Admins"/>
+      <Variable Name="SystemCenter2012R2ServiceManagerServicesServiceAccount" Value="CONTOSO\!sm_s" />
+      <Variable Name="SystemCenter2012R2ServiceManagerServicesServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SystemCenter2012R2ServiceManagerWorkflowServiceAccount" Value="CONTOSO\!sm_w" />
+      <Variable Name="SystemCenter2012R2ServiceManagerWorkflowServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SystemCenter2012R2ServiceManagerReportingServiceAccount" Value="CONTOSO\!sm_r" />
+      <Variable Name="SystemCenter2012R2ServiceManagerReportingServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SystemCenter2012R2ServiceManagerAnalysisServiceAccount" Value="CONTOSO\!sm_a" />
+      <Variable Name="SystemCenter2012R2ServiceManagerAnalysisServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SystemCenter2012R2ServiceManagerPortalServiceAccount" Value="CONTOSO\!sm_p" />
+      <Variable Name="SystemCenter2012R2ServiceManagerPortalServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SystemCenter2012R2ServiceManagerManagementGroupName" Value="SM_Contoso"/>
+      <Variable Name="SystemCenter2012R2ServiceManagerDatawarehouseManagementGroupName" Value="DW_Contoso"/>
+      <Variable Name="SystemCenter2012R2ServiceManagerPortalUsers" Value="CONTOSO\Domain Users"/>
+    </Component>
+    <Component Name="System Center 2012 R2 Data Protection Manager">
+      <Variable Name="SystemCenter2012R2DataProtectionManagerProgramFiles" Value="D:\Program Files" />
+      <Variable Name="SystemCenter2012R2DataProtectionManagerAdminGroup" Value="CONTOSO\DPM Admins"/>
+    </Component>
+  </Components>
+  <Roles>
+    <Role Name="SQL Server 2012 Management Tools" Server="SMDB1.contoso.com" SQLCluster="True"></Role>
+    <Role Name="System Center 2012 R2 Service Manager Database Server" Server="SMDB1.contoso.com" Instance="MSSQLSERVER" SQLCluster="True"></Role>
+    <Role Name="System Center 2012 R2 Service Manager Management Server" Server="SM1.contoso.com"></Role>
+    <Role Name="System Center 2012 R2 Service Manager Console" Server="SM1.contoso.com"></Role>
+  </Roles>
+    <SQL>
+    <Cluster Cluster="SMDB1.Contoso.com" Version="SQL Server 2012">
+      <Variable Name="SQLAdmins" Value="CONTOSO\SQL Admins" />
+      <Variable Name="SQLInstallSQLDataDir" Value="\\DC1\VMShare1\CLDB1\SMDB1" />
+      <Variable Name="SQLUserDBDir" Value="\\DC1\VMShare1\CLDB1\SMDB1\MSSQL11.$Instance\MSSQL\Data"/>
+      <Variable Name="SQLUserDBLogDir" Value="\\DC1\VMShare1\CLDB1\SMDB1\MSSQL11.$Instance\MSSQL\Data"/>
+      <Variable Name="SQLTempDBDir" Value="\\DC1\VMShare1\CLDB1\SMDB1\MSSQL11.$Instance\MSSQL\Data"/>
+      <Variable Name="SQLTempDBLogDir" Value="\\DC1\VMShare1\CLDB1\SMDB1\MSSQL11.$Instance\MSSQL\Data"/>
+      <Variable Name="SQLAgtServiceAccount" Value="CONTOSO\!sql" />
+      <Variable Name="SQLAgtServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SQLServiceAccount" Value="CONTOSO\!sql" />
+      <Variable Name="SQLServiceAccountPassword" Value="Passw0rd!" />
+      <Variable Name="SQLClusterIPAddress" Value="192.168.2.101" />
+      <Variable Name="SQLClusterNetwork" Value="Cluster Network 1" />
+      <Variable Name="SQLClusterIPSubnet" Value="255.255.255.0" />
+      <Node Server="NODE1.Contoso.com" Preferred="1"></Node>
+      <Node Server="NODE2.Contoso.com" Preferred="2"></Node>
+    </Cluster>
+  </SQL>
+  <VMs>
+    <Count>4</Count>
+    <Domain>
+      <Name>contoso.com</Name>
+      <ServiceAccountOU>Services.HQ</ServiceAccountOU>
+      <GroupOU>Groups.HQ</GroupOU>
+    </Domain>
+    <Default>
+      <Host>Localhost</Host>
+      <VMFolder>D:\VMs</VMFolder>
+      <VHDFolder>D:\VMs</VHDFolder>
+      <VMName>
+        <Prefix>WS12R2D</Prefix>
+        <Sequence>1</Sequence>
+      </VMName>
+      <Processor>2</Processor>
+      <Memory>
+        <Startup>1024</Startup>
+        <Minimum>1024</Minimum>
+        <Maximum>2048</Maximum>
+        <Buffer>20</Buffer>
+      </Memory>
+      <NetworkAdapter>
+        <VirtualSwitch>CorpNet02</VirtualSwitch>
+        <MAC>Dynamic</MAC>
+        <IP>
+          <Prefix>192.168.2.</Prefix>
+          <Sequence>1</Sequence>
+          <Mask>24</Mask>
+          <Gateway>192.168.2.1</Gateway>
+          <DNS>192.168.2.1</DNS>
+        </IP>
+      </NetworkAdapter>
+      <OSDisk>
+        <Parent>D:\VHD\WS12R2Std-G2-Sysprep.vhdx</Parent>
+        <Type>Differencing</Type>
+      </OSDisk>
+      <DataDisks>
+        <Count>1</Count>
+        <Format>VHDX</Format>
+        <Size>100</Size>
+      </DataDisks>
+      <DVD>False</DVD>
+      <AutoStart>
+        <Action>Nothing</Action>
+        <Delay>0</Delay>
+      </AutoStart>
+      <JoinDomain>
+        <Domain>contoso.com</Domain>
+        <Credentials>
+          <Domain>contoso.com</Domain>
+          <Password>Passw0rd!</Password>
+          <Username>!jd</Username>
+        </Credentials>
+        <OrganizationalUnit>Servers.HQ</OrganizationalUnit>
+      </JoinDomain>
+      <AdministratorPassword>Passw0rd!</AdministratorPassword>
+      <VMGeneration>2</VMGeneration>
+      <GuestServices>True</GuestServices>
+    </Default>
+    <VM Count="1">
+      <VMName>DC1</VMName>
+      <DataDisks>
+        <Count>2</Count>
+        <Format>VHDX</Format>
+        <Size>100</Size>
+      </DataDisks>
+    </VM>
+    <VM Count="2">
+      <VMName>SM1</VMName>
+      <Memory>
+        <Startup>2048</Startup>
+        <Minimum>4096</Minimum>
+        <Maximum>4096</Maximum>
+        <Buffer>20</Buffer>
+      </Memory>
+    </VM>
+    <VM Count="3">
+      <VMGeneration>2</VMGeneration>
+      <VMName>NODE1</VMName>
+      <Memory>
+        <Startup>2048</Startup>
+        <Minimum>8192</Minimum>
+        <Maximum>8192</Maximum>
+        <Buffer>5</Buffer>
+      </Memory>
+      <DataDisks>
+        <Count>3</Count>
+        <Format>VHDX</Format>
+        <Size>100</Size>
+      </DataDisks>
+    </VM>
+    <VM Count="4">
+      <VMGeneration>2</VMGeneration>
+      <VMName>NODE2</VMName>
+      <Memory>
+        <Startup>2048</Startup>
+        <Minimum>8192</Minimum>
+        <Maximum>8192</Maximum>
+        <Buffer>5</Buffer>
+      </Memory>
+      <DataDisks>
+        <Count>3</Count>
+        <Format>VHDX</Format>
+        <Size>100</Size>
+      </DataDisks>
+    </VM>
+  </VMs>
+</Installer>
